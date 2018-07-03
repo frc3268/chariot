@@ -39,7 +39,7 @@ public class Robot extends SampleRobot {
 	private DifferentialDrive driveTrain;
 	private Joystick stick;
 
-	public Robot() {
+	public void robotInit() {
 		Talon driveLeftFront 	= new Talon(RobotMap.PWM_driveLeftFront);
 		Talon driveLeftBack 	= new Talon(RobotMap.PWM_driveLeftBack);
 		Talon driveRightFront	= new Talon(RobotMap.PWM_driveRightFront);
@@ -51,13 +51,13 @@ public class Robot extends SampleRobot {
 		driveTrain = new DifferentialDrive(driveLeft, driveRight);
 		stick = new Joystick(0);
 	}
+	
 	public void operatorControl() {
 		driveTrain.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) {
-			// Drive arcade style
+			
 			driveTrain.arcadeDrive(-stick.getY(), stick.getX());
-
-			// The motors will be updated every 5ms
+			
 			Timer.delay(0.005);
 		}
 	}
